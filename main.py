@@ -29,6 +29,7 @@ async def main():
     print(f'执行时间: {get_beijing_time().strftime("%Y-%m-%d %H:%M:%S")} (北京时间)')
     print('='*60)
 
+    force_notify = os.getenv('FORCE_NOTIFY', 'False')
     # 加载配置
     config = load_config()
     if not config:
@@ -109,7 +110,7 @@ async def main():
     print('='*60)
 
     # 发送通知
-    if failed_count > 0 or (success_count > 0 and checkin.has_balance_changed()):
+    if force_notify == 'True' or failed_count > 0 or (success_count > 0 and checkin.has_balance_changed()):
         await notify_results(results, success_count, failed_count)
     else:
         print('\n[INFO] 全部成功且余额无变化，跳过通知')
