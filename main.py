@@ -4,6 +4,7 @@ Router平台自动签到脚本主程序
 支持 AnyRouter 和 AgentRouter 多账号签到
 """
 
+import os
 import asyncio
 import sys
 from datetime import datetime
