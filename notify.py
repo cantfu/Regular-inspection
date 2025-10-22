@@ -17,6 +17,7 @@ class NotificationKit:
 		self.dingding_webhook = os.getenv('DINGDING_WEBHOOK')
 		self.feishu_webhook = os.getenv('FEISHU_WEBHOOK')
 		self.weixin_webhook = os.getenv('WEIXIN_WEBHOOK')
+		self.webhook_keyword = os.getenv('WEBHOOK_KEYWORD')
 
 	def send_email(self, title: str, content: str, msg_type: Literal['text', 'html'] = 'text'):
 		if not self.email_user or not self.email_pass or not self.email_to:
@@ -130,7 +131,7 @@ class NotificationKit:
 		if not self.dingding_webhook:
 			raise ValueError('DingTalk Webhook not configured')
 
-		data = {'msgtype': 'text', 'text': {'content': f'{title}\n{content}'}}
+		data = {'msgtype': 'text', 'text': {'content': f'{self.webhook_keyword}-{title}\n{content}'}}
 		with httpx.Client(timeout=30.0) as client:
 			client.post(self.dingding_webhook, json=data)
 
