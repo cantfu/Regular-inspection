@@ -53,7 +53,7 @@ jobs:
           WEIXIN_WEBHOOK: ${{ secrets.WEIXIN_WEBHOOK }}
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
           SERVERPUSHKEY: ${{ secrets.SERVERPUSHKEY }}
-          WEBHOOK_KEY: ${{ secrets.WEBHOOK_KEY }}
+          WEBHOOK_KEYWORD: ${{ secrets.WEBHOOK_KEYWORD }}
           FORCE_NOTIFY: ${{ secrets.FORCE_NOTIFY }}
         run: |
           python main.py
